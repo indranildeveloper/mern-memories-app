@@ -7,7 +7,10 @@
     "start": "node -r esm index.js",
     "devStart": "nodemon -r esm index.js",
     "client": "npm run start --prefix ../client",
-    "dev": "concurrently \"npm run devStart\" \"npm run client\""
+    "install-client": "cd ../client && npm install",
+    "dev": "concurrently \"npm run devStart\" \"npm run client\"",
+    "build": "cd ../client && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "author": "Indranil Halder",
   "license": "MIT",
