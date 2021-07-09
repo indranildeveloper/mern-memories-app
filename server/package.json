@@ -2,10 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "NODEJS Server for MERM Memories Application",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node -r esm index.js",
-    "devStart": "nodemon -r esm index.js",
+    "start": "node index.js",
+    "devStart": "nodemon index.js",
     "client": "npm run start --prefix ../client",
     "install-client": "cd ../client && npm install",
     "dev": "concurrently \"npm run devStart\" \"npm run client\"",
@@ -15,12 +16,14 @@
   "author": "Indranil Halder",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.15",
     "nodemon": "^2.0.7"
   }
