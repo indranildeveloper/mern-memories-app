@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
@@ -15,9 +16,11 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
   const user = JSON.parse(localStorage.getItem("profile"));
-
+  const history = useHistory();
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId
+      ? state.posts.posts.find((message) => message._id === currentId)
+      : null
   );
   const dispatch = useDispatch();
 
@@ -39,7 +42,7 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, history));
       clear();
     } else {
       dispatch(
@@ -51,16 +54,16 @@ const Form = ({ currentId, setCurrentId }) => {
 
   if (!user?.result?.name) {
     return (
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={3}>
         <Typography variant="h6" align="center">
-          Please Sign In to create your own memories! Like other memories
+          Please Sign In to create your own memories! And Like other memories!
         </Typography>
       </Paper>
     );
   }
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={3}>
       <form
         autoComplete="off"
         noValidate

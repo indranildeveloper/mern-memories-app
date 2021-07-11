@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 import useStyles from "./styles";
 import react from "../../images/react.png";
+import memoriesText from "../../images/memoriesText.png";
 
 const NavBar = () => {
   const classes = useStyles();
@@ -15,7 +16,7 @@ const NavBar = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    history.push("/auth");
+    history.push("/");
     setUser(null);
   };
 
@@ -31,18 +32,10 @@ const NavBar = () => {
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-      <div className={classes.brandContainer}>
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h3"
-          align="center"
-        >
-          Memories
-        </Typography>
+      <Link to="/" className={classes.brandContainer}>
+        <img src={memoriesText} alt="icon" height="45px" />
         <img className={classes.image} src={react} alt="memories" height="60" />
-      </div>
+      </Link>
       <Toolbar className={classes.toolbar}>
         {user ? (
           <div className={classes.profile}>
