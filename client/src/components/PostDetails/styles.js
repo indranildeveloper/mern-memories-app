@@ -33,7 +33,6 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     padding: "20px",
-    borderRadius: "15px",
     height: "39vh",
   },
   container: {

@@ -6,7 +6,6 @@ import {
   CardMedia,
   Button,
   Typography,
-  ButtonBase,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
@@ -58,7 +57,11 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raise={1} elevation={3}>
-      <ButtonBase className={classes.cardAction} onClick={openPost}>
+      <div
+        style={{ cursor: "pointer" }}
+        className={classes.cardAction}
+        onClick={openPost}
+      >
         <CardMedia
           className={classes.media}
           image={post.selectedFile}
@@ -95,7 +98,7 @@ const Post = ({ post, setCurrentId }) => {
             {post.message}
           </Typography>
         </CardContent>
-      </ButtonBase>
+      </div>
       <CardActions className={classes.cardActions}>
         <Button
           size="small"

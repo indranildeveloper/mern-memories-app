@@ -26,12 +26,12 @@ export default (state = { isLoading: true, posts: [] }, action) => {
     case FETCH_BY_SEARCH:
       return {
         ...state,
-        posts: action.payload,
+        posts: action?.payload,
       };
     case FETCH_POST:
       return {
         ...state,
-        post: action.payload,
+        post: action?.payload,
       };
     case CREATE:
       return { ...state, posts: [...state.posts, action.payload] };

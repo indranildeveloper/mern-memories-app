@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
@@ -17,6 +17,7 @@ import useStyles from "./styles";
 
 const PostDetails = () => {
   const classes = useStyles();
+  const [loading, setLoading] = useState(true);
   const { post, posts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,14 +29,13 @@ const PostDetails = () => {
 
   useEffect(() => {
     if (post) {
-      dispatch(
-        getPostBySearch({ search: "none", tags: post?.tags?.join(",") })
-      );
+      dispatch(getPostBySearch({ search: "none", tags: post?.tags.join(",") }));
+      setLoading(false);
     }
   }, [post]);
 
   if (!posts) return null;
-  if (isLoading) {
+  if (isLoading || loading) {
     return (
       <Paper elevation={3} className={classes.loadingPaper}>
         <CircularProgress size="7em" />
@@ -71,15 +71,6 @@ const PostDetails = () => {
           <Typography variant="body1">
             {moment(post.createdAt).fromNow()}
           </Typography>
-          <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
-          <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Comments - coming soon!</strong>
-          </Typography>
-          <Divider style={{ margin: "20px 0" }} />
         </div>
         <div className={classes.imageSection}>
           <img
@@ -91,6 +82,15 @@ const PostDetails = () => {
             alt={post.title}
           />
         </div>
+        <Divider style={{ margin: "20px 0" }} />
+        <Typography variant="body1">
+          <strong>Realtime Chat - coming soon!</strong>
+        </Typography>
+        <Divider style={{ margin: "20px 0" }} />
+        <Typography variant="body1">
+          <strong>Comments - coming soon!</strong>
+        </Typography>
+        <Divider style={{ margin: "20px 0" }} />
       </div>
       {recommendedPosts.length && (
         <div className={classes.section}>
@@ -113,7 +113,7 @@ const PostDetails = () => {
                             <Typography gutterBottom variant="h6">
                               {title}
                             </Typography>
-                            <img src={selectedFile} width="100%" />
+                            <img src={selectedFile} width="100%" alt="" />
                             <Typography gutterBottom variant="subtitle2">
                               {name}
                             </Typography>
