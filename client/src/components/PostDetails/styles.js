@@ -38,4 +38,23 @@ export default makeStyles((theme) => ({
   container: {
     marginTop: "25px",
   },
+  commentsOuterContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      justifyContent: "center",
+    },
+  },
+  commentsInnerContainer: {
+    maxHeight: "200px",
+    overflowY: "auto",
+    marginRight: "30px",
+  },
+  commentTextContainer: {
+    width: "70%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
 }));
