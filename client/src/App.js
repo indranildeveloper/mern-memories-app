@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Container, CssBaseline } from "@material-ui/core";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
@@ -12,6 +12,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <CssBaseline />
       <NavBar />
       <Container maxWidth="xl">
         <Switch>
